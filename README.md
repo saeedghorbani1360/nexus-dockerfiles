@@ -1,1 +1,1 @@
-# This is a docker file for creating ubuntu image containing nexus
+# Here there are dockerfiles for setting up nexus on Ubuntu and Alpine .

@@ -2,10 +2,7 @@ FROM alpine:latest
 LABEL Description="Alpine server with Nexus"
 
 RUN apk update && \
-        apk add openjdk8 && \
-        apk add wget && \
-        apk add iproute2 && \
-        apk add sed
+        apk add openjdk8
 
 ARG dest=/usr/app
 RUN mkdir $dest

@@ -2,9 +2,7 @@ FROM ubuntu:latest
 LABEL Description="Ubuntu server with Nexus"
 
 RUN apt-get update && \
-apt-get install openjdk-8-jdk -y && \
-apt-get install wget -y && \
-apt-get install iputils-ping -y
+apt-get install openjdk-8-jdk -y
 
 ARG dest=/usr/app
 RUN mkdir $dest

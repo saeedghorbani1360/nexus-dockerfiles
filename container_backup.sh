@@ -11,7 +11,7 @@ docker images --filter "reference=backup_my*:*" --format '{{.ID}}:{{.CreatedAt}}
     timestamp=$(date -d "$created_at" +%s)
     current_time=$(date +%s)
     age=$((current_time - timestamp))
-    if [ "$age" -gt 259200 ]; then
+    if [ "$age" -gt 10800 ]; then
 	echo "${image_id} removed."    
         docker rmi  "$image_id"
     fi

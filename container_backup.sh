@@ -5,6 +5,7 @@ echo "Backup from running containers"
 cons=`docker ps --format "{{.Names}}"`
 date=`date +%Y-%m-%d_%H-%M-%S`
 
+docker image prune --filter  until=72h
 find . -name "backup_*.tar" -mmin +600 -exec rm -rf {} \;
 
 for i in $cons

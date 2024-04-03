@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 LABEL Description="Installing GUI on UBUNTU server"
 MAINTAINER Auther="Saeed"
@@ -10,17 +10,15 @@ WORKDIR $dest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-	slim \
-	ubuntu-mate-desktop \
-	tightvncserver \
+RUN apt-get update && apt-get install -y \
+	xfce4 \
 	xrdp \
-	ufw 
-#RUN apt-get clean
-#RUN rm -rf /var/lib/apt/lists/*
+	tightvncserver \
+	ufw \
+	&& apt-get clean \
+    	&& rm -rf /var/lib/apt/lists/*
 
 RUN ufw allow 3389/tcp
-#RUN systemctl start xrdp
 
 RUN mkdir ~/.vnc
 RUN echo "123456" | vncpasswd -f > ~/.vnc/passwd
@@ -30,7 +28,6 @@ ENV USER=root
 ENV DISPLAY=:1
 
 EXPOSE 5900 5901 3389
-#CMD ["sh", "-c", "vncserver :1 -geometry 1280x800 -depth 24 && tail -F ~/.vnc/*.log"]
 COPY ./services.sh $dest
 RUN chmod +x ./services.sh
 
